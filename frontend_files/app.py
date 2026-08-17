@@ -2,8 +2,6 @@ import streamlit as st
 import requests
 import json
 
-BASE_API_URL = "http://backend:7860"
-
 # title
 st.title("SuperKart")
 
@@ -41,10 +39,11 @@ product_data = {
 }
 
 if st.button("Predict"):
-    response = requests.post("https://bug-free-space-carnival-q7gxr7949pj347q7-7860.app.github.dev/v1/predict", json=product_data)
-    if response.status_code == 200:
-      result = response.json()
-      predicted_sales = result["predicted_sales"]
-      st.success(f"predicted Sales: {predicted_sales}")
-    else:
-      st.error("API request failed")
+  response = requests.post("https://bug-free-space-carnival-q7gxr7949pj347q7-7860.app.github.dev/v1/predict", json=product_data)
+  if response.status_code == 200:
+    predicted_sales = response.json()['predicted_sales']
+    st.success(f"Predicted Sales: {predicted_sales}")
+  else:
+    st.error(f"API request failed {response.status_code}")
+    st.error(response.text)
+
