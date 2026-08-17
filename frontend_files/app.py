@@ -42,7 +42,7 @@ product_data = {
 
 if st.button("Predict"):
     response = requests.post("https://bug-free-space-carnival-q7gxr7949pj347q7-7860.app.github.dev/v1/predict", json=product_data)
-    if(response.status_code == 200):
+    if response.status_code == 200:
       result = response.json()
       predicted_sales = result["predicted_sales"]
       st.success(f"predicted Sales: {predicted_sales}")
