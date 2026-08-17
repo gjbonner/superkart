@@ -36,7 +36,7 @@ def predict():
     input_data = pd.DataFrame([fields])
     prediction = model.predict(input_data)
 
-    return jsonify({"predicted_sales": prediction})
+    return jsonify({"predicted_sales": prediction.item() })
 
 
 if __name__ == "__main__":
